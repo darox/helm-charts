@@ -35,4 +35,18 @@ entries:
     urls:
     - https://github.com/darox/helm-charts/releases/download/lobe-chat-0.1.0/lobe-chat-0.1.0.tgz
     version: 0.1.0
-generated: "2023-12-20T12:38:47.65072236Z"
+  twampy:
+  - apiVersion: v2
+    appVersion: 0.0.2
+    created: "2023-12-20T13:00:59.948588533Z"
+    description: A Helm chart for Kubernetes to deploy twampy. Twampy is a TWAMP client
+      and server implementation written in Python. Orginally developed by Nokia and
+      customized by https://github.com/darox/python3-twampy.
+    digest: f0daf2689509274d44d0653471ca2e8741e55d323f92b453d70a39fdab1e95a9
+    icon: https://raw.githubusercontent.com/darox/python3-twampy/main/assets/icon.png
+    name: twampy
+    type: application
+    urls:
+    - https://github.com/darox/helm-charts/releases/download/twampy-0.0.2/twampy-0.0.2.tgz
+    version: 0.0.2
+generated: "2023-12-20T13:00:59.94862403Z"
