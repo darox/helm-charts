@@ -1,4 +1,4 @@
-name: Lobe-chat - Update Helm Chart Version
+name: Lobe-chat - Update Helm
 
 on:
   pull_request:
@@ -18,10 +18,25 @@ jobs:
         run: |
           APP_VERSION=$(grep 'tag: ' charts/lobe-chat/values.yaml | cut -d ':' -f 2 | tr -d ' ')
           echo "::set-output name=version::${APP_VERSION}"
+      
+      - name: Get chart version
+        id: chart_version
+        run: |
+          CHART_VERSION=$(grep 'version: ' charts/lobe-chat/Chart.yaml | cut -d ':' -f 2 | tr -d ' ')
+          echo "::set-output name=version::${CHART_VERSION}"
 
-      - name: Update Chart.yaml
+      - name: Update App Version
         run: |
             sed -i 's/appVersion:.*/appVersion: ${{ steps.app_version.outputs.version }}' charts/lobe-chat/Chart.yaml
+      
+      - name: Update Chart Version
+        run: |
+            major=$(echo ${{ steps.chart_version.outputs.version }}  | cut -d. -f1)
+            minor=$(echo ${{ steps.chart_version.outputs.version }}  | cut -d. -f2)
+            patch=$(echo ${{ steps.chart_version.outputs.version }}  | cut -d. -f3)
+            patch=$((patch + 1))
+            version="${major}.${minor}.${patch}"
+            sed -i 's/version:.*/version: $version' charts/lobe-chat/Chart.yaml
             
       - name: Commit changes
         run: |
