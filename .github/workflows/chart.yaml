@@ -2,7 +2,7 @@ name: Lobe-chat - Update Helm
 
 on:
   pull_request:
-    branches: ["dependabot/docker/charts/lobe-chat/lobehub/*"]
+    branches: ["dependabot/docker/charts/lobe-chat/lobehub/**"]
 
 jobs:
   update-version:
