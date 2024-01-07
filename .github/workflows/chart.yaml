@@ -1,7 +1,7 @@
 name: Lobe-chat - Update Helm
 
 on:
-  pull_request:
+  pull_request_target:
     branches: 
       - 'dependabot/docker/charts/lobe-chat/**'
 
