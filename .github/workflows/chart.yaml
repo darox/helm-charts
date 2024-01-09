@@ -3,8 +3,11 @@ name: Lobe-chat - Update Helm
 on:
   pull_request_target:
     branches: 
-      - 'dependabot/docker/charts/lobe-chat/**'
-
+      - 'main'
+    types:
+      - opened
+    paths:
+      - 'charts/lobe-chat/values.yaml'
 jobs:
   update-version:
     runs-on: ubuntu-latest
