@@ -31,7 +31,7 @@ jobs:
 
       - name: Update App Version
         run: |
-            sed -i 's/appVersion:.*/appVersion: ${{ steps.app_version.outputs.version }}' charts/lobe-chat/Chart.yaml
+            sed -i "s/appVersion:.*/appVersion: ${{ steps.app_version.outputs.version }}/" charts/lobe-chat/Chart.yaml
       
       - name: Update Chart Version
         run: |
@@ -40,7 +40,7 @@ jobs:
             patch=$(echo ${{ steps.chart_version.outputs.version }}  | cut -d. -f3)
             patch=$((patch + 1))
             version="${major}.${minor}.${patch}"
-            sed -i 's/version:.*/version: $version' charts/lobe-chat/Chart.yaml
+            sed -i "s/version:.*/version: $version" charts/lobe-chat/Chart.yaml
             
       - name: Commit changes
         run: |
