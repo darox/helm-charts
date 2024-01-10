@@ -40,7 +40,7 @@ jobs:
             patch=$(echo ${{ steps.chart_version.outputs.version }}  | cut -d. -f3)
             patch=$((patch + 1))
             version="${major}.${minor}.${patch}"
-            sed -i "s/version:.*/version: $version" charts/lobe-chat/Chart.yaml
+            sed -i "s/version:.*/version: $version/" charts/lobe-chat/Chart.yaml
             
       - name: Commit changes
         run: |
