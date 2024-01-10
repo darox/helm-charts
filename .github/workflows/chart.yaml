@@ -46,7 +46,7 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git commit --amend
+          git commit --amend -m "Update chart version to ${{ steps.chart_version.outputs.version }} and app version to ${{ steps.app_version.outputs.version }}"
           
       - name: Push changes
         uses: ad-m/github-push-action@master
