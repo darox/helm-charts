@@ -1,0 +1,7 @@
+repositoryID: 629fdca6-2807-4a8b-b6e3-6771373fe189
+owners:
+  - name: dario
+    email: maderdario@gmail.com
+ignore:
+  - name: lobe-chat
+  - name: twampy
