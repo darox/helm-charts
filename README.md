@@ -1,5 +1,7 @@
 # Helm-charts
 
+[![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/helm-charts-darox)](https://artifacthub.io/packages/search?repo=helm-charts-darox)
+
 A collection of Helm charts that I created because they didn't exist yet.
 
 Currently available charts:
