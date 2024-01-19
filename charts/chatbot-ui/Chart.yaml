@@ -1,9 +1,0 @@
-apiVersion: v2
-name: chatbot-ui
-description: A Helm chart for chatbot-ui
-type: application
-version: 0.1.0
-appVersion: 1.0.0
-maintainers:
-  - name: Dario Mader
-    email: maderdario@gmail.com
