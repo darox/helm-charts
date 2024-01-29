@@ -8,7 +8,7 @@ image:
   # https://hub.docker.com/r/lobehub/lobe-chat
   repository: lobehub/lobe-chat
   pullPolicy: Always
-  tag: "v0.121.3"
+  tag: "v0.122.1"
 
 imagePullSecrets: []
 nameOverride: ""
