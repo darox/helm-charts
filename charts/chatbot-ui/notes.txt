@@ -1,7 +1,0 @@
-Congratulations! Your chatbot-ui web application is now deployed.
-
-   To access the application, run:
-
-     export NODE_PORT=$(kubectl get --namespace default -o jsonpath="{.spec.ports[0].nodePort}" services chatbot-ui-service)
-     export NODE_IP=$(kubectl get nodes --namespace default -o jsonpath="{.items[0].status.addresses[0].address}")
-     echo "Chatbot-UI URL: http://$NODE_IP:$NODE_PORT"
