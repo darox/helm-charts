@@ -1,0 +1,26 @@
+schedule: "0 */12 * * *"
+restartPolicy: "OnFailure"
+
+image: ghcr.io/siderolabs/talos-backup:latest
+
+s3:
+  bucket: ""
+  prefix: ""
+  usePathStyle: false
+  region: "auto"
+  existingSecretName: ""
+
+age:
+  x25519PublicKey: ""
+
+clusterName: ""
+
+talos:
+  config:
+    existingSecretname: ""
+
+nodeSelector: {}
+
+tolerations: []
+
+

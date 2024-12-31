@@ -1,0 +1,97 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: {{ .Release.Name }}-talos-backup-etcd
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/name: {{ .Release.Name }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    app.kubernetes.io/managed-by: Helm
+spec:
+  schedule: {{ .Values.schedule }}
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          {{- if .Values.tolerations }}
+          tolerations:
+            {{- toYaml .Values.tolerations | nindent 12 }}
+          {{- end }}
+          {{ if .Values.nodeSelector }}
+          nodeSelector:
+            {{- toYaml .Values.nodeSelector | nindent 12 }}
+          {{- end }}
+          automountServiceAccountToken: false
+          containers:
+          - name: talos-backup-etcd
+            image: {{ .Values.image }}
+            workingDir: /tmp
+            imagePullPolicy: IfNotPresent
+            env:
+              - name: AWS_ACCESS_KEY_ID
+                valueFrom:
+                  secretKeyRef:
+                    name: {{ .Values.s3.existingSecretName }}
+                    key: AWS_ACCESS_KEY_ID
+              - name: AWS_SECRET_ACCESS_KEY
+                valueFrom:
+                  secretKeyRef:
+                    name: {{ .Values.s3.existingSecretName }}
+                    key: AWS_SECRET_ACCESS_KEY
+              # secret because some S3 providers have things like account ID in the endpoint
+              - name: CUSTOM_S3_ENDPOINT
+                valueFrom: 
+                  secretKeyRef:
+                    name: {{ .Values.s3.existingSecretName  }}
+                    key: CUSTOM_S3_ENDPOINT
+              - name: BUCKET
+                value: {{ .Values.s3.bucket }}
+              - name: CLUSTER_NAME
+                value: {{ .Values.clusterName }}
+              - name: S3_PREFIX
+                value: {{ .Values.s3.prefix }}
+              - name: USE_PATH_STYLE
+                value: {{ .Values.s3.usePathStyle | quote }}
+              - name: AGE_X25519_PUBLIC_KEY
+                value: {{ .Values.age.x25519PublicKey }}
+              - name: AWS_REGION
+                value: {{ .Values.s3.region }}
+              {{ if .Values.talos.config.existingSecretname }}
+              - name: TALOSCONFIG
+                value: /var/run/secrets/talosconfig
+              {{ end }}
+            securityContext:
+              runAsUser: 1000
+              runAsGroup: 1000
+              allowPrivilegeEscalation: false
+              runAsNonRoot: true
+              capabilities:
+                drop:
+                  - ALL
+              seccompProfile:
+                type: RuntimeDefault
+            command:
+            - /talos-backup
+            volumeMounts:
+            - mountPath: /tmp
+              name: tmp
+            - mountPath: /var/run/secrets/talos.dev
+              name: s3-secrets
+            {{ if .Values.talos.config.existingSecretname }}
+            - mountPath: /var/run/secrets/talosconfig
+              name: talosconfig
+              subPath: talosconfig
+            {{ end }} 
+          restartPolicy: {{ .Values.restartPolicy }}
+          volumes:
+          - emptyDir: {}
+            name: tmp
+          - name: s3-secrets
+            secret:
+              secretName: {{ .Values.s3.existingSecretName }}
+          {{ if .Values.talos.config.existingSecretname }}
+          - name: talosconfig
+            secret:
+              secretName: {{ .Values.talos.config.existingSecretname }}
+          {{ end }}
