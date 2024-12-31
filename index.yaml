@@ -481,6 +481,18 @@ entries:
     urls:
     - https://github.com/darox/helm-charts/releases/download/lobe-chat-0.1.0/lobe-chat-0.1.0.tgz
     version: 0.1.0
+  talos-backup-etcd:
+  - apiVersion: v2
+    appVersion: 0.0.1
+    created: "2024-12-31T14:04:45.356590664Z"
+    description: A Helm chart for Kubernetes to deploy talos-etcd-backup.
+    digest: d26c0e2339f2092a3a66a418ee7cac3db6d8e9b787096a5e68b1ce7b8ba67423
+    icon: https://avatars.githubusercontent.com/u/13804887?s=48&v=4
+    name: talos-backup-etcd
+    type: application
+    urls:
+    - https://github.com/darox/helm-charts/releases/download/talos-backup-etcd-0.0.1/talos-backup-etcd-0.0.1.tgz
+    version: 0.0.1
   twampy:
   - apiVersion: v2
     appVersion: 0.0.2
@@ -495,4 +507,4 @@ entries:
     urls:
     - https://github.com/darox/helm-charts/releases/download/twampy-0.0.2/twampy-0.0.2.tgz
     version: 0.0.2
-generated: "2024-12-27T10:43:48.019256371Z"
+generated: "2024-12-31T14:04:45.35672211Z"
