@@ -1,0 +1,9 @@
+apiVersion: v2
+name: talos-backup-etcd
+description: A Helm chart for Kubernetes to deploy talos-etcd-backup. 
+type: application
+version: 0.0.1
+appVersion: "0.0.1"
+icon: https://avatars.githubusercontent.com/u/13804887?s=48&v=4
+
+
