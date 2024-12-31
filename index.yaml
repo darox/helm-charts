@@ -493,6 +493,17 @@ entries:
     version: 0.1.0
   talos-backup-etcd:
   - apiVersion: v2
+    appVersion: v0.1.0-beta.2
+    created: "2024-12-31T14:27:23.225365728Z"
+    description: A Helm chart for Kubernetes to deploy talos-etcd-backup.
+    digest: 6f90237072739c3e565b254001a187897ed3be4ba045a88f7fa6633738bfb4db
+    icon: https://avatars.githubusercontent.com/u/13804887?s=48&v=4
+    name: talos-backup-etcd
+    type: application
+    urls:
+    - https://github.com/darox/helm-charts/releases/download/talos-backup-etcd-0.0.2/talos-backup-etcd-0.0.2.tgz
+    version: 0.0.2
+  - apiVersion: v2
     appVersion: 0.0.1
     created: "2024-12-31T14:04:45.356590664Z"
     description: A Helm chart for Kubernetes to deploy talos-etcd-backup.
@@ -517,4 +528,4 @@ entries:
     urls:
     - https://github.com/darox/helm-charts/releases/download/twampy-0.0.2/twampy-0.0.2.tgz
     version: 0.0.2
-generated: "2024-12-31T14:06:02.967095977Z"
+generated: "2024-12-31T14:27:23.225498295Z"
