@@ -17,10 +17,20 @@ spec:
           {{- if .Values.tolerations }}
           tolerations:
             {{- toYaml .Values.tolerations | nindent 12 }}
+          {{- else }}
+          tolerations:
+            - key: node-role.kubernetes.io/control-plane
+              operator: Exists
+              effect: NoSchedule
+          nodeSelector:
+            node-role.kubernetes.io/control-plane: ""
           {{- end }}
           {{ if .Values.nodeSelector }}
           nodeSelector:
             {{- toYaml .Values.nodeSelector | nindent 12 }}
+          {{- else }}
+          nodeSelector:
+            node-role.kubernetes.io/control-plane: ""
           {{- end }}
           automountServiceAccountToken: false
           containers:
