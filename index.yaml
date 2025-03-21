@@ -2,6 +2,16 @@ apiVersion: v1
 entries:
   lobe-chat:
   - apiVersion: v2
+    appVersion: 1.73.0
+    created: "2025-03-21T07:30:14.875005236Z"
+    description: A Helm chart for deploying lobe-chat on Kubernetes
+    digest: 6c510a800f6e343220dc279d5954d98f7d675ee770d847f6960d6ec0c4ae760a
+    name: lobe-chat
+    type: application
+    urls:
+    - https://github.com/darox/helm-charts/releases/download/lobe-chat-0.1.49/lobe-chat-0.1.49.tgz
+    version: 0.1.49
+  - apiVersion: v2
     appVersion: v1.40.3
     created: "2024-12-31T14:06:02.966565098Z"
     description: A Helm chart for deploying lobe-chat on Kubernetes
@@ -528,4 +538,4 @@ entries:
     urls:
     - https://github.com/darox/helm-charts/releases/download/twampy-0.0.2/twampy-0.0.2.tgz
     version: 0.0.2
-generated: "2024-12-31T14:27:23.225498295Z"
+generated: "2025-03-21T07:30:14.875244523Z"
