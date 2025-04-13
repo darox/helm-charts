@@ -1,0 +1,30 @@
+# NOTES:
+
+Congratulations! You have successfully deployed the teslamate-api Helm chart.
+
+To access the teslamate-api application, you have a few options:
+
+1. Port Forwarding:
+   - Run the following command to port forward the teslamate-api service to your local machine:
+
+     kubectl port-forward svc/{{ .Release.Name }}-teslamate-api {{ .Values.service.port }}:{{ .Values.service.port }}
+
+   - Open a web browser and enter the following URL:
+
+     http://localhost:{{ .Values.service.port }}
+
+   - You should now see the teslamate-api application running.
+
+2. Ingress Hostname:
+   - Open a web browser and enter the following URL:
+
+     {{ if index .Values "ingress" "tls" }}
+     https://{{ index .Values "ingress" "hosts" 0 "host" }}
+     {{ else }}
+     http://{{ index .Values "ingress" "hosts" 0 "host" }}
+     {{ end }}
+
+   - You should now see the teslamate-api application running.
+
+Enjoy using teslamate-api!
+
