@@ -5,9 +5,7 @@ metadata:
   labels:
     {{- include "teslamate-api.labels" . | nindent 4 }}
 spec:
-  {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
-  {{- end }}
   selector:
     matchLabels:
       {{- include "teslamate-api.selectorLabels" . | nindent 6 }}
@@ -37,9 +35,11 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          {{ if .Values.envFromSecret.enabled }}
           envFrom:
             - secretRef: 
-                name: {{ .Values.envFromSecret }}
+                name: {{ .Values.envFromSecret.name }}
+          {{ end }}
           {{- with .Values.env }}
           env:
           {{ toYaml . | nindent 12 }}

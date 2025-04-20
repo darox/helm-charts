@@ -17,30 +17,23 @@ fullnameOverride: ""
 env: {}
   #- name: DATABASE_USER
   #  value: "teslamate"
-  #- name: DATABASE_PASS
-  #  value: "secret"
   #- name: DATABASE_NAME
   #  value: "teslamate"
   #- name: DATABASE_HOST
   #  value: "database"
-  #- name: ENCRYPTION_KEY
-  #  value: ""
   #- name: MQTT_HOST
   #  value: "mosquitto"
   #- name: TZ
   #  value: "Europe/Berlin"
-  
 
-# The name of the secret containing the environment variables to be added to the container
-envFromSecret: teslamate-api
-
-secret:
-  # Creates a secret named teslamate-api with the specified key/value pairs.
-  # It's not recommended to store secrets in the chart itself, but this is an option.
+# A secret containing the environment variables to be added to the container
+envFromSecret: 
   enabled: false
-  OPENAI_API_KEY: ""
-  ACCESS_CODE: ""
-
+  name: teslamate-api
+  envs:
+    #DATABASE_PASS:
+    #ENCRYPTION_KEY:
+    #MQTT_PASSWORD:
 
 serviceAccount:
   # Specifies whether a service account should be created
@@ -58,13 +51,12 @@ podLabels: {}
 
 podSecurityContext:
   runAsNonRoot: true
-  runAsUser: 1001
-  runAsGroup: 1001
-  fsGroup: 1001
+  runAsUser: 101
+  runAsGroup: 101
+  fsGroup: 101
 
 securityContext:
   privileged: false
-  #
   readOnlyRootFilesystem: true
   allowPrivilegeEscalation: false
   capabilities:
@@ -103,12 +95,6 @@ resources: {}
   #   cpu: 100m
   #   memory: 128Mi
 
-autoscaling:
-  enabled: false
-  minReplicas: 1
-  maxReplicas: 100
-  targetCPUUtilizationPercentage: 80
-  # targetMemoryUtilizationPercentage: 80
 
 # Additional volumes on the output Deployment definition.
 volumes: []
